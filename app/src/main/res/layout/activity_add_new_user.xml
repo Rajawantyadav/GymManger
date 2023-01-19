@@ -14,14 +14,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="230dp"
+            android:layout_height="150dp"
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:src="@drawable/members"></ImageView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="80dp"
+                app:cardElevation="10dp">
+
+                <ImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:src="@drawable/members"></ImageView>
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
 
         <LinearLayout
@@ -34,90 +42,103 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="Name:"
                 android:gravity="center"
-                android:textSize="20dp"></TextView>
+                android:text="Name:"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
             <EditText
+                android:id="@+id/add_name"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:hint="Rajawant Yadav"
-                android:textSize="20dp"></EditText>
+                android:textSize="17dp"></EditText>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="20dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:gravity="center"
                 android:text="Email:"
-                android:textSize="20dp"></TextView>
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
             <EditText
+
+                android:id="@+id/add_email"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:inputType="textEmailAddress"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:hint="Rajawant@gmail.com"
-                android:textSize="20dp"></EditText>
+                android:inputType="textEmailAddress"
+                android:textSize="17dp"></EditText>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="20dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:gravity="center"
                 android:text="Mobile:"
-                android:textSize="20dp"></TextView>
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
             <EditText
+
+                android:id="@+id/add_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:gravity="center_horizontal"
-                android:hint="9984802878"
                 android:ems="10"
+                android:gravity="center"
+                android:hint="9984802878"
                 android:inputType="number"
-                android:textSize="20dp"></EditText>
+                android:textSize="17dp"></EditText>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="20dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:gravity="center"
                 android:text="DOB:"
-                android:textSize="20dp"></TextView>
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
             <EditText
+
+                android:id="@+id/add_dob"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:gravity="center_horizontal"
-                android:inputType="date"
-                android:hint="14/09/1998"
-                android:textSize="20dp"></EditText>
-
-
+                android:ems="10"
+                android:gravity="center"
+                android:hint="14/09/1997"
+                android:textSize="17dp"></EditText>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="20dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
@@ -125,7 +146,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="Gender:"
-                android:textSize="20dp"></TextView>
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -134,12 +156,15 @@
                 android:orientation="horizontal">
 
                 <RadioButton
+
+                    android:id="@+id/add_radio_male"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Male"></RadioButton>
 
                 <RadioButton
+                    android:id="@+id/add_radio_female"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -150,51 +175,83 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="20dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
             android:orientation="horizontal"
             android:padding="4dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:gravity="center"
                 android:text="Batch:"
-                android:textSize="20dp"></TextView>
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
-            <EditText
+            <Spinner
+                android:id="@+id/batch_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:gravity="center_horizontal"
-                android:hint="Evening Batch"
-                android:textSize="20dp"></EditText>
+                android:gravity="center"
+                android:textSize="17dp"></Spinner>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="20dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
             android:orientation="horizontal"
             android:padding="4dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="Wieght:"
-                android:textSize="20dp"></TextView>
+                android:gravity="center"
+                android:text="Plan:"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
 
-            <EditText
+            <Spinner
+                android:id="@+id/plan_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:gravity="center_horizontal"
-                android:hint="60 Kg"
-                android:textSize="20dp"></EditText>
+                android:gravity="center"
+                android:textSize="17dp"></Spinner>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:text="Weight:"
+                android:textSize="20dp"
+                android:textStyle="bold"></TextView>
+
+            <EditText
+                android:id="@+id/add_weight"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:hint="60 KG"
+                android:textSize="17dp"></EditText>
+        </LinearLayout>
+
+
         <Button
+            android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="25dp"
-            android:text="Add New Member"></Button>
+            android:text="Add Member"></Button>
 
     </LinearLayout>
 </ScrollView>
