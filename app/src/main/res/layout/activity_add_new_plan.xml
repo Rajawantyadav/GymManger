@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".AddNewPlanActivity">
+    tools:context=".activity.AddNewPlanActivity">
 
     <TextView
         android:layout_width="wrap_content"

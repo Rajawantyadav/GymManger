@@ -5,12 +5,34 @@ public class Plan {
     String planPrice;
     String planDuration;
     String planDescription;
+    String planAcive;
+
+
+    public Plan() {
+    }
 
     public Plan(String planName, String planPrice, String planDuration, String planDescription) {
         this.planName = planName;
         this.planPrice = planPrice;
         this.planDuration = planDuration;
         this.planDescription = planDescription;
+
+    }
+
+    public Plan(String planName, String planPrice, String planDuration, String planDescription, String active) {
+        this.planName = planName;
+        this.planPrice = planPrice;
+        this.planDuration = planDuration;
+        this.planDescription = planDescription;
+        this.planAcive = active;
+    }
+
+    public String getPlanAcive() {
+        return planAcive;
+    }
+
+    public void setPlanAcive(String planAcive) {
+        this.planAcive = planAcive;
     }
 
     public String getPlanName() {

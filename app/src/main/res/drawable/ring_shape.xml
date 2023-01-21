@@ -6,18 +6,18 @@
         </shape>
     </item>
     <item
-        android:bottom="11dp"
-        android:left="11dp"
-        android:right="11dp"
-        android:top="11dp">
+        android:bottom="5dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp">
         <shape android:shape="oval">
             <solid android:color="@color/white" />
         </shape>
     </item>
     <item>
         <vector xmlns:android="http://schemas.android.com/apk/res/android"
-            android:width="512dp"
-            android:height="512dp"
+            android:width="100dp"
+            android:height="100dp"
             android:viewportWidth="24"
             android:viewportHeight="24">
             <path

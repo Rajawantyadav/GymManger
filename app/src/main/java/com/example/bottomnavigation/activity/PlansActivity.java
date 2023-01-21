@@ -9,14 +9,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.example.bottomnavigation.AddNewPlanActivity;
 import com.example.bottomnavigation.R;
 import com.example.bottomnavigation.adapters.PlanAdapter;
 import com.example.bottomnavigation.model.Plan;
+import com.example.bottomnavigation.network.ApiAgent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class PlansActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -31,14 +37,30 @@ public class PlansActivity extends AppCompatActivity {
         setContentView(R.layout.activity_plans);
         recyclerView = findViewById(R.id.recyclerView);
         addPlanBtn = findViewById(R.id.button_addPlan);
-        dataList.add(new Plan("Diwali Plan", "2000", "2 Months", "Diwali Plan is been added .."));
-        dataList.add(new Plan("Holi Plan", "2000", "2 Months", "Diwali Plan is been added .."));
-        dataList.add(new Plan("Holi Plan", "2000", "2 Months", "Diwali Plan is been added .."));
-        dataList.add(new Plan("Holi Plan", "2000", "2 Months", "Diwali Plan is been added .."));
-        PlanAdapter adapter = new PlanAdapter(PlansActivity.this, dataList);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(
-                new LinearLayoutManager(PlansActivity.this));
+
+        try {
+            Call<List<Plan>> planCall = ApiAgent.getAPIInstance().getApi().getPlans();
+            planCall.enqueue(new Callback<List<Plan>>() {
+                @Override
+                public void onResponse(Call<List<Plan>> call, Response<List<Plan>> response) {
+                    dataList.addAll(response.body());
+                    PlanAdapter adapter = new PlanAdapter(PlansActivity.this, dataList);
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(
+                            new LinearLayoutManager(PlansActivity.this));
+                }
+
+                @Override
+                public void onFailure(Call<List<Plan>> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_SHORT);
+
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         //adding click even on addPlan button
 

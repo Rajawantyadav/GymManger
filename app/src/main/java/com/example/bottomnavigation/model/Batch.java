@@ -5,12 +5,33 @@ public class Batch {
     String batchStartTime;
     String batchEndTime;
     String limit;
+    String batchActive;
+
+    public Batch() {
+    }
 
     public Batch(String batchName, String batchStartTime, String batchEndTime, String limit) {
         this.batchName = batchName;
         this.batchStartTime = batchStartTime;
         this.batchEndTime = batchEndTime;
         this.limit = limit;
+    }
+
+
+    public Batch(String batchName, String batchStartTime, String batchEndTime, String limit, String active) {
+        this.batchName = batchName;
+        this.batchStartTime = batchStartTime;
+        this.batchEndTime = batchEndTime;
+        this.limit = limit;
+        this.batchActive = active;
+    }
+
+    public String getBatchActive() {
+        return batchActive;
+    }
+
+    public void setBatchActive(String batchActive) {
+        this.batchActive = batchActive;
     }
 
     public String getBatchName() {
