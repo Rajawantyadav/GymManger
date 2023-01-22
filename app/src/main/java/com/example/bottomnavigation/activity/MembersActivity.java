@@ -35,7 +35,6 @@ public class MembersActivity extends AppCompatActivity {
             members.enqueue(new Callback<List<Member>>() {
                 @Override
                 public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
-                    Toast.makeText(getApplicationContext(), "Data Fetched succssFully..", Toast.LENGTH_SHORT).show();
                     dataList.addAll(response.body());
                     MemberListAdapter adapter = new MemberListAdapter(getApplicationContext(), dataList);
                     recyclerView.setAdapter(adapter);

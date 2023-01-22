@@ -1,10 +1,9 @@
 package com.example.bottomnavigation.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -12,13 +11,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.bottomnavigation.R;
-import com.example.bottomnavigation.fragments.HomeFragment;
+import com.example.bottomnavigation.model.Batch;
+import com.example.bottomnavigation.model.Plan;
 import com.example.bottomnavigation.network.ApiAgent;
 import com.example.bottomnavigation.request.MemberDetails;
 import com.example.bottomnavigation.response.MemberAddResp;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +33,8 @@ public class AddNewUserActivity extends AppCompatActivity {
     RadioButton radioMale, radioFemale;
     Spinner batchNameSpinner, planNameSpinner;
     Button addButton;
+    ArrayList<String> batchList;
+    ArrayList<String> planList;
     ProgressBar progressBar;
 
     @Override
@@ -45,6 +51,26 @@ public class AddNewUserActivity extends AppCompatActivity {
         batchNameSpinner = findViewById(R.id.batch_spinner);
         planNameSpinner = findViewById(R.id.plan_spinner);
         addButton = findViewById(R.id.add_button);
+        batchList = getBatch();
+        planList = getPlan();
+     /* batchList = new ArrayList<>();
+        batchList.add("Evening Batch");
+        batchList.add("Morning Batch");
+        planList = new ArrayList<>();
+        planList.add("Monthly Plan");
+        planList.add("Yearly Plan");*/
+        // Application of the Array to the Spinner
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, batchList);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        batchNameSpinner.setAdapter(spinnerArrayAdapter);
+        batchNameSpinner.setSelection(1);
+
+
+        // Application of the Array to the Spinner
+        ArrayAdapter<String> spinnerArrayAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, planList);
+        spinnerArrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+        planNameSpinner.setAdapter(spinnerArrayAdapter1);
+        planNameSpinner.setSelection(1);
 
 
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -54,10 +80,10 @@ public class AddNewUserActivity extends AppCompatActivity {
                 try {
                     String gender = null;
                     if (radioFemale.isChecked()) {
-                       gender=radioFemale.getText().toString();
+                        gender = radioFemale.getText().toString();
 
                     } else if (radioMale.isChecked()) {
-                        gender=radioMale.getText().toString();
+                        gender = radioMale.getText().toString();
                     }
                     MemberDetails memberDetails = new MemberDetails();
                     memberDetails.setMemberName(name.getText().toString());
@@ -73,6 +99,8 @@ public class AddNewUserActivity extends AppCompatActivity {
 
                             if (response.isSuccessful() && response.body().getError().equalsIgnoreCase("false")) {
                                 Toast.makeText(getApplicationContext(), response.body().getMsg() + "", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(AddNewUserActivity.this, MembersActivity.class);
+                                startActivity(intent);
                             }
 
                         }
@@ -90,5 +118,59 @@ public class AddNewUserActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private ArrayList<String> getBatch() {
+        ArrayList<Batch> batchList = new ArrayList<>();
+        ArrayList<String> baches = new ArrayList<>();
+        try {
+            Call<List<Batch>> batchCall = ApiAgent.getAPIInstance().getApi().getBatches();
+            batchCall.enqueue(new Callback<List<Batch>>() {
+                @Override
+                public void onResponse(Call<List<Batch>> call, Response<List<Batch>> response) {
+                    batchList.addAll(response.body());
+                    for (Batch batch : batchList) {
+                        baches.add(batch.getBatchName());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<Batch>> call, Throwable t) {
+
+                }
+            });
+
+
+        } catch (Exception e) {
+
+        }
+        return baches;
+    }
+
+    private ArrayList<String> getPlan() {
+        ArrayList<Plan> planList = new ArrayList<>();
+        ArrayList<String> plans = new ArrayList<>();
+        try {
+            Call<List<Plan>> planCall = ApiAgent.getAPIInstance().getApi().getPlans();
+            planCall.enqueue(new Callback<List<Plan>>() {
+                @Override
+                public void onResponse(Call<List<Plan>> call, Response<List<Plan>> response) {
+                    planList.addAll(response.body());
+                    for (Plan plan : planList) {
+                        plans.add(plan.getPlanName());
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<List<Plan>> call, Throwable t) {
+
+                }
+            });
+
+        } catch (Exception e) {
+
+        }
+        return plans;
     }
 }
