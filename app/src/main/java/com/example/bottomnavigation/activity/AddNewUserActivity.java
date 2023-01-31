@@ -33,9 +33,6 @@ public class AddNewUserActivity extends AppCompatActivity {
     RadioButton radioMale, radioFemale;
     Spinner batchNameSpinner, planNameSpinner;
     Button addButton;
-    ArrayList<String> batchList;
-    ArrayList<String> planList;
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,28 +48,8 @@ public class AddNewUserActivity extends AppCompatActivity {
         batchNameSpinner = findViewById(R.id.batch_spinner);
         planNameSpinner = findViewById(R.id.plan_spinner);
         addButton = findViewById(R.id.add_button);
-        batchList = getBatch();
-        planList = getPlan();
-     /* batchList = new ArrayList<>();
-        batchList.add("Evening Batch");
-        batchList.add("Morning Batch");
-        planList = new ArrayList<>();
-        planList.add("Monthly Plan");
-        planList.add("Yearly Plan");*/
-        // Application of the Array to the Spinner
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, batchList);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-        batchNameSpinner.setAdapter(spinnerArrayAdapter);
-        batchNameSpinner.setSelection(1);
-
-
-        // Application of the Array to the Spinner
-        ArrayAdapter<String> spinnerArrayAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, planList);
-        spinnerArrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
-        planNameSpinner.setAdapter(spinnerArrayAdapter1);
-        planNameSpinner.setSelection(1);
-
-
+        getBatch();
+        getPlan();
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,31 +62,41 @@ public class AddNewUserActivity extends AppCompatActivity {
                     } else if (radioMale.isChecked()) {
                         gender = radioMale.getText().toString();
                     }
-                    MemberDetails memberDetails = new MemberDetails();
-                    memberDetails.setMemberName(name.getText().toString());
-                    memberDetails.setMemberEmail(email.getText().toString());
-                    memberDetails.setMemberMobile(mobile.getText().toString());
-                    memberDetails.setMemberDob(dob.getText().toString());
-                    memberDetails.setMemberWeight(weight.getText().toString());
-                    memberDetails.setMemberGender(gender);
-                    Call<MemberAddResp> respCall = ApiAgent.getAPIInstance().getApi().addMember(memberDetails);
-                    respCall.enqueue(new Callback<MemberAddResp>() {
-                        @Override
-                        public void onResponse(Call<MemberAddResp> call, Response<MemberAddResp> response) {
+                    if (name.getText().length() == 0 || email.getText().length() == 0 || mobile.getText().length() == 0 || dob.getText().length() == 0
+                            || weight.getText().length() == 0 || planNameSpinner.getSelectedItem().toString().length() == 0 || batchNameSpinner.getSelectedItem().toString().length() == 0
+                            || gender.length() == 0) {
+                        Toast.makeText(getApplicationContext(), "Please fill all required field..", Toast.LENGTH_SHORT).show();
 
-                            if (response.isSuccessful() && response.body().getError().equalsIgnoreCase("false")) {
-                                Toast.makeText(getApplicationContext(), response.body().getMsg() + "", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(AddNewUserActivity.this, MembersActivity.class);
-                                startActivity(intent);
+                    } else {
+
+                        MemberDetails memberDetails = new MemberDetails();
+                        memberDetails.setMemberName(name.getText().toString());
+                        memberDetails.setMemberEmail(email.getText().toString());
+                        memberDetails.setMemberMobile(mobile.getText().toString());
+                        memberDetails.setMemberDob(dob.getText().toString());
+                        memberDetails.setMemberWeight(weight.getText().toString());
+                        memberDetails.setMemberPlan(planNameSpinner.getSelectedItem().toString());
+                        memberDetails.setMemberBatch(batchNameSpinner.getSelectedItem().toString());
+                        memberDetails.setMemberGender(gender);
+                        Call<MemberAddResp> respCall = ApiAgent.getAPIInstance().getApi().addMember(memberDetails);
+                        respCall.enqueue(new Callback<MemberAddResp>() {
+                            @Override
+                            public void onResponse(Call<MemberAddResp> call, Response<MemberAddResp> response) {
+
+                                if (response.isSuccessful() && response.body().getError().equalsIgnoreCase("false")) {
+                                    Toast.makeText(getApplicationContext(), response.body().getMsg() + "", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(AddNewUserActivity.this, MembersActivity.class);
+                                    startActivity(intent);
+                                }
+
                             }
+                            @Override
+                            public void onFailure(Call<MemberAddResp> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
 
-                        }
-
-                        @Override
-                        public void onFailure(Call<MemberAddResp> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -132,6 +119,10 @@ public class AddNewUserActivity extends AppCompatActivity {
                     for (Batch batch : batchList) {
                         baches.add(batch.getBatchName());
                     }
+                    ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(AddNewUserActivity.this, android.R.layout.simple_spinner_item, baches);
+                    spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                    batchNameSpinner.setAdapter(spinnerArrayAdapter);
+                    batchNameSpinner.setSelection(1);
                 }
 
                 @Override
@@ -159,7 +150,11 @@ public class AddNewUserActivity extends AppCompatActivity {
                     for (Plan plan : planList) {
                         plans.add(plan.getPlanName());
                     }
-
+                    // Application of the Array to the Spinner
+                    ArrayAdapter<String> spinnerArrayAdapter1 = new ArrayAdapter<String>(AddNewUserActivity.this, android.R.layout.simple_spinner_item, plans);
+                    spinnerArrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+                    planNameSpinner.setAdapter(spinnerArrayAdapter1);
+                    planNameSpinner.setSelection(1);
                 }
 
                 @Override

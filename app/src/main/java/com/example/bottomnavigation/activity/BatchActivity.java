@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottomnavigation.R;
 import com.example.bottomnavigation.adapters.BatchAdapter;
+import com.example.bottomnavigation.listener.SelectListener;
 import com.example.bottomnavigation.model.Batch;
 import com.example.bottomnavigation.network.ApiAgent;
 
@@ -28,6 +29,7 @@ public class BatchActivity extends AppCompatActivity {
     List<Batch> dataList = new ArrayList<>();
     RecyclerView recyclerView;
     Button addBatchButton;
+    SelectListener listener;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,7 +45,20 @@ public class BatchActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<List<Batch>> call, Response<List<Batch>> response) {
                     dataList.addAll(response.body());
-                    BatchAdapter adapter = new BatchAdapter(BatchActivity.this, dataList);
+                    listener = new SelectListener() {
+                        @Override
+                        public void onItemClickListener(Object object) {
+                            Batch batch = (Batch) object;
+                            Intent intent = new Intent(getApplicationContext(), EditBatchActivity.class);
+                            intent.putExtra("batch_id", batch.getBatchId());
+                            intent.putExtra("batch_name", batch.getBatchName());
+                            intent.putExtra("batch_limit", batch.getLimit());
+                            intent.putExtra("batch_start_time", batch.getBatchStartTime());
+                            intent.putExtra("batch_end_time", batch.getBatchEndTime());
+                            startActivity(intent);
+                        }
+                    };
+                    BatchAdapter adapter = new BatchAdapter(getApplicationContext(), dataList,listener);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(
                             new LinearLayoutManager(BatchActivity.this));
@@ -58,7 +73,6 @@ public class BatchActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         addBatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,4 +81,6 @@ public class BatchActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

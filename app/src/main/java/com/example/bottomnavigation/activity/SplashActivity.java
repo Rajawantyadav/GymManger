@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.bottomnavigation.MainActivity;
 import com.example.bottomnavigation.R;
 
 public class SplashActivity extends AppCompatActivity {
@@ -24,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                 }

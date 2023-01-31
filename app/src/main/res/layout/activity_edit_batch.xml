@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activity.AddNewBatchActivity">
+    tools:context=".activity.EditBatchActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
-        android:text="Add New Batch"
+        android:text="Update Batch"
         android:textSize="20dp"
         android:textStyle="bold">
 
@@ -29,7 +30,6 @@
         android:hint="Batch Name"
         android:textSize="14dp"></EditText>
 
-
     <EditText
         android:id="@+id/batch_start_time"
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
-        android:hint="Batch Start Time"
+        android:hint="4 PM"
         android:textSize="14dp"></EditText>
 
 
@@ -48,8 +48,9 @@
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
-        android:hint="Batch End Time"
+        android:hint="5 PM"
         android:textSize="14dp"></EditText>
+
 
     <EditText
         android:id="@+id/batch_limt"
@@ -58,9 +59,10 @@
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
-        android:hint="Batch Limit"
+        android:hint="25"
         android:inputType="number"
         android:textSize="14dp"></EditText>
+
 
     <Button
         android:id="@+id/button_addBatch"
@@ -69,6 +71,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:background="@drawable/oval"
-        android:text="Add Batch"></Button>
+        android:text="Update Batch"></Button>
+
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.bottomnavigation.model;
 
 public class Plan {
+    String planId;
     String planName;
     String planPrice;
     String planDuration;
@@ -25,6 +26,14 @@ public class Plan {
         this.planDuration = planDuration;
         this.planDescription = planDescription;
         this.planAcive = active;
+    }
+
+    public String getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(String planId) {
+        this.planId = planId;
     }
 
     public String getPlanAcive() {

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.bottomnavigation.R;
 import com.example.bottomnavigation.adapters.PlanAdapter;
+import com.example.bottomnavigation.listener.SelectListener;
 import com.example.bottomnavigation.model.Plan;
 import com.example.bottomnavigation.network.ApiAgent;
 
@@ -29,6 +30,8 @@ public class PlansActivity extends AppCompatActivity {
     Button addPlanBtn;
 
     List<Plan> dataList = new ArrayList<>();
+    SelectListener listener;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -44,10 +47,25 @@ public class PlansActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<List<Plan>> call, Response<List<Plan>> response) {
                     dataList.addAll(response.body());
-                    PlanAdapter adapter = new PlanAdapter(PlansActivity.this, dataList);
+                    listener = new SelectListener() {
+                        @Override
+                        public void onItemClickListener(Object object) {
+                            Plan plan = (Plan) object;
+                            Intent intent = new Intent(getApplicationContext(), EditPlanActivity.class);
+                            intent.putExtra("plan_id", plan.getPlanId());
+                            intent.putExtra("plan_name", plan.getPlanName());
+                            intent.putExtra("plan_price", plan.getPlanPrice());
+                            intent.putExtra("plan_duration", plan.getPlanDuration());
+                            intent.putExtra("plan_desc", plan.getPlanDescription());
+                            startActivity(intent);
+                        }
+                    };
+                    PlanAdapter adapter = new PlanAdapter(PlansActivity.this, dataList, listener);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(
                             new LinearLayoutManager(PlansActivity.this));
+
+
                 }
 
                 @Override

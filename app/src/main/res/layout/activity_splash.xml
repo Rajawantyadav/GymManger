@@ -8,13 +8,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="144dp"
-        android:layout_height="153dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/bmi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/bmi" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/textView"
@@ -24,5 +26,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.412" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,4 +38,11 @@ public interface ApiInterface {
     @GET("getPlan")
     Call<List<Plan>> getPlans();
 
+    @POST("updatePlan")
+    Call<MemberAddResp> updatePlans(@Body Plan updatedPlan);
+
+    @POST("updateBatch")
+    Call<MemberAddResp> updateBatch(@Body Batch updatedBatch);
+
+
 }

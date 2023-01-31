@@ -1,6 +1,7 @@
 package com.example.bottomnavigation.model;
 
 public class MemberAttendance {
+    long memberAttendanceId;
     String memberName;
     String punchDate;
     String punchInTime;
@@ -11,6 +12,14 @@ public class MemberAttendance {
         this.punchDate = punchDate;
         this.punchInTime = punchInTime;
         this.punchOutTime = punchOutTime;
+    }
+
+    public long getMemberAttendanceId() {
+        return memberAttendanceId;
+    }
+
+    public void setMemberAttendanceId(long memberAttendanceId) {
+        this.memberAttendanceId = memberAttendanceId;
     }
 
     public String getMemberName() {

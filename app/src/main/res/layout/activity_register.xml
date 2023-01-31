@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.RegisterActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="Sign up"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/regis_gym_name"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/oval"
+        android:hint="Saprton Gym Center"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+
+    <EditText
+        android:id="@+id/regis_email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/oval"
+        android:hint="Rajawant123@gmail.com"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/regis_psw"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/oval"
+        android:hint="Password"
+        android:textAlignment="center"
+        android:textSize="22dp" />
+
+    <EditText
+        android:id="@+id/regis_re_pws"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/oval"
+        android:hint="Re-type Password"
+        android:textAlignment="center"
+        android:textSize="22dp" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/oval"
+        android:text="sign up"></Button>
+
+    <Button
+        android:id="@+id/btn_alreadyAccount"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/transparent"
+        android:text="Already have account"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Inverse"
+        android:textColor="@color/purple_700"></Button>
+
+
+</LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.bottomnavigation.model;
 
 public class Member {
+
+    long memberId;
     String memberName;
     String joiningDate;
     String activePlanName;
@@ -11,6 +13,16 @@ public class Member {
         this.joiningDate = joiningDate;
         this.activePlanName = activePlanName;
         this.planExpireDate = planExpireDate;
+    }
+
+
+
+    public long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(long memberId) {
+        this.memberId = memberId;
     }
 
     public String getMemberName() {

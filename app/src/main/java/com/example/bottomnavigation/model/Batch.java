@@ -1,11 +1,14 @@
 package com.example.bottomnavigation.model;
 
 public class Batch {
+
+    String batchId;
     String batchName;
     String batchStartTime;
     String batchEndTime;
     String limit;
     String batchActive;
+
 
     public Batch() {
     }
@@ -28,6 +31,14 @@ public class Batch {
 
     public String getBatchActive() {
         return batchActive;
+    }
+
+    public String getBatchId() {
+        return batchId;
+    }
+
+    public void setBatchId(String batchId) {
+        this.batchId = batchId;
     }
 
     public void setBatchActive(String batchActive) {

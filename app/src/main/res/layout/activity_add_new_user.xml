@@ -32,225 +32,123 @@
 
         </LinearLayout>
 
-        <LinearLayout
+
+        <EditText
+            android:id="@+id/add_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
+            android:background="@drawable/oval"
+            android:gravity="center"
+            android:hint="Rajawant Yadav"
+            android:textSize="17dp"></EditText>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Name:"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
 
-            <EditText
-                android:id="@+id/add_name"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:hint="Rajawant Yadav"
-                android:textSize="17dp"></EditText>
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/add_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
+            android:background="@drawable/oval"
+            android:gravity="center"
+            android:hint="Rajawant@gmail.com"
+            android:inputType="textEmailAddress"
+            android:textSize="17dp"></EditText>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Email:"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
 
-            <EditText
-
-                android:id="@+id/add_email"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:hint="Rajawant@gmail.com"
-                android:inputType="textEmailAddress"
-                android:textSize="17dp"></EditText>
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/add_mobile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
+            android:background="@drawable/oval"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:hint="9984802878"
+            android:inputType="number"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:textSize="17dp"></EditText>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Mobile:"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
 
-            <EditText
-
-                android:id="@+id/add_mobile"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="9984802878"
-                android:inputType="number"
-                android:textSize="17dp"></EditText>
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/add_dob"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
+            android:background="@drawable/oval"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="14/09/1997"
+            android:textSize="17dp"></EditText>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="DOB:"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
 
-            <EditText
-
-                android:id="@+id/add_dob"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="14/09/1997"
-                android:textSize="17dp"></EditText>
-        </LinearLayout>
-
-        <LinearLayout
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <TextView
+            <RadioButton
+
+                android:id="@+id/add_radio_male"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Gender:"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <RadioGroup
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:text="Male"></RadioButton>
 
-                <RadioButton
+            <RadioButton
+                android:id="@+id/add_radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Female"></RadioButton>
+        </RadioGroup>
 
-                    android:id="@+id/add_radio_male"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Male"></RadioButton>
 
-                <RadioButton
-                    android:id="@+id/add_radio_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Female"></RadioButton>
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <Spinner
+            android:id="@+id/plan_spinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
+            android:background="@drawable/oval"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="17dp"></Spinner>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Batch:"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
 
-            <Spinner
-                android:id="@+id/batch_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:textSize="17dp"></Spinner>
-        </LinearLayout>
-
-        <LinearLayout
+        <Spinner
+            android:id="@+id/batch_spinner"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
+            android:background="@drawable/oval"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="17dp"></Spinner>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Plan:"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
 
-            <Spinner
-                android:id="@+id/plan_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:textSize="17dp"></Spinner>
-        </LinearLayout>
-
-        <LinearLayout
+        <EditText
+            android:id="@+id/add_weight"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:padding="4dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="Weight:"
-                android:textSize="20dp"
-                android:textStyle="bold"></TextView>
-
-            <EditText
-                android:id="@+id/add_weight"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:hint="60 KG"
-                android:textSize="17dp"></EditText>
-        </LinearLayout>
+            android:background="@drawable/oval"
+            android:gravity="center"
+            android:hint="60 kg"
+            android:inputType="number"
+            android:textSize="17dp"></EditText>
 
 
         <Button
             android:id="@+id/add_button"
             android:layout_width="wrap_content"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="25dp"
+            android:background="@drawable/oval"
             android:text="Add Member"></Button>
 
     </LinearLayout>
