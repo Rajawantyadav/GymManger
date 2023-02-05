@@ -8,7 +8,15 @@ public class Batch {
     String batchEndTime;
     String limit;
     String batchActive;
+    String ownerId;
 
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
 
     public Batch() {
     }

@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         android:text="Add New Batch"
         android:textSize="20dp"
         android:textStyle="bold">
@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/batch_name"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
@@ -33,28 +33,31 @@
     <EditText
         android:id="@+id/batch_start_time"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/oval"
+        android:drawableRight="@drawable/ic_baseline_access_time_24"
         android:gravity="center"
         android:hint="Batch Start Time"
+        android:inputType="none"
         android:textSize="14dp"></EditText>
-
 
     <EditText
         android:id="@+id/batch_end_time"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/oval"
+        android:drawableRight="@drawable/ic_baseline_access_time_24"
         android:gravity="center"
         android:hint="Batch End Time"
+        android:inputType="none"
         android:textSize="14dp"></EditText>
 
     <EditText
         android:id="@+id/batch_limt"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
@@ -65,7 +68,7 @@
     <Button
         android:id="@+id/button_addBatch"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:background="@drawable/oval"

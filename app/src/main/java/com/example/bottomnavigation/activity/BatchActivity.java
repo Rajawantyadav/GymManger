@@ -38,9 +38,10 @@ public class BatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_batch);
         recyclerView = findViewById(R.id.recyclerView2);
         addBatchButton = findViewById(R.id.add_batch_button);
+        String ownerId = "1";
 
         try {
-            Call<List<Batch>> batchCall = ApiAgent.getAPIInstance().getApi().getBatches();
+            Call<List<Batch>> batchCall = ApiAgent.getAPIInstance().getApi().getBatches(ownerId);
             batchCall.enqueue(new Callback<List<Batch>>() {
                 @Override
                 public void onResponse(Call<List<Batch>> call, Response<List<Batch>> response) {
@@ -58,7 +59,7 @@ public class BatchActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     };
-                    BatchAdapter adapter = new BatchAdapter(getApplicationContext(), dataList,listener);
+                    BatchAdapter adapter = new BatchAdapter(getApplicationContext(), dataList, listener);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(
                             new LinearLayoutManager(BatchActivity.this));

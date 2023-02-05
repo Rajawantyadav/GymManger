@@ -1,6 +1,7 @@
 package com.example.bottomnavigation.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,9 +27,11 @@ public class HomeFragment extends Fragment {
     GridView gridView;
     String[] dashBoardNames = {"Add", "Plans", "Attendance", "Batch", "Members", "Report", "Enquiry", "Expense", "How to use"};
     int[] dashBoardIcons = {R.drawable.adduser, R.drawable.plans, R.drawable.attendence, R.drawable.batch, R.drawable.members, R.drawable.repots, R.drawable.enquiry, R.drawable.expense, R.drawable.youtube};
+
     public HomeFragment() {
         // Required empty public constructor
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,7 +53,7 @@ public class HomeFragment extends Fragment {
                 } else if (dashBoardNames[i].equalsIgnoreCase("Attendance")) {
                     Intent myIntent = new Intent(getContext(), AttendanceActivity.class);
                     startActivity(myIntent);
-                }else if (dashBoardNames[i].equalsIgnoreCase("Batch")) {
+                } else if (dashBoardNames[i].equalsIgnoreCase("Batch")) {
                     Intent myIntent = new Intent(getContext(), BatchActivity.class);
                     startActivity(myIntent);
                 } else if (dashBoardNames[i].equalsIgnoreCase("Members")) {
@@ -66,8 +69,7 @@ public class HomeFragment extends Fragment {
                     Intent myIntent = new Intent(getContext(), ExpenseActivity.class);
                     startActivity(myIntent);
                 } else {
-                    Intent myIntent = new Intent(getContext(), AddNewUserActivity.class);
-                    startActivity(myIntent);
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=4DkNCgUXbig&list=RDS980-z1qx3g&index=27&ab_channel=NAVRecords")));
                 }
 
 

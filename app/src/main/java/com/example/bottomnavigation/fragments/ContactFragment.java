@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.bottomnavigation.activity.EditGymCenterActivity;
 import com.example.bottomnavigation.R;
 import com.example.bottomnavigation.activity.LoginActivity;
 import com.example.bottomnavigation.adapters.ContactGridViewAdapter;
@@ -22,8 +23,8 @@ import com.example.bottomnavigation.adapters.ContactGridViewAdapter;
 
 public class ContactFragment extends Fragment {
 
-    String[] names = {"Gym Profile", "Setting", "How to use", "Plan & subscription", "Contact us", "Rate us", "Share this App", "Log out", "Report bugs"};
-    int[] icons = {R.drawable.manage_accounts, R.drawable.settings_icon, R.drawable.youtube, R.drawable.subscriptions, R.drawable.contact_support, R.drawable.star_rate_icon, R.drawable.share_icon, R.drawable.logout_icon, R.drawable.bug_icon};
+    String[] names = {"Gym Profile",  "How to use", "Contact us", "Rate us", "Share this App", "Log out", "Report bugs"};
+    int[] icons = {R.drawable.manage_accounts,  R.drawable.youtube, R.drawable.contact_support, R.drawable.star_rate_icon, R.drawable.share_icon, R.drawable.logout_icon, R.drawable.bug_icon};
     GridView gridView;
 
     public ContactFragment() {
@@ -57,6 +58,9 @@ public class ContactFragment extends Fragment {
                     email.putExtra(Intent.EXTRA_SUBJECT, "Report New Bug");
                     email.setType("message/rfc822");
                     startActivity(Intent.createChooser(email, "Choose an Email client :"));
+                } else if (names[i].equalsIgnoreCase("Gym Profile")) {
+                    Intent intent = new Intent(getContext(), EditGymCenterActivity.class);
+                    startActivity(intent);
                 } else if (names[i].equalsIgnoreCase("Contact us")) {
                     try {
                         String phoneNumberWithCountryCode = "+919984802878";

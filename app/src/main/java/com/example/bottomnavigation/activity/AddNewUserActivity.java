@@ -1,11 +1,12 @@
 package com.example.bottomnavigation.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import com.example.bottomnavigation.model.Plan;
 import com.example.bottomnavigation.network.ApiAgent;
 import com.example.bottomnavigation.request.MemberDetails;
 import com.example.bottomnavigation.response.MemberAddResp;
+import com.example.bottomnavigation.utility.DatePickerDialogFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,6 +50,19 @@ public class AddNewUserActivity extends AppCompatActivity {
         batchNameSpinner = findViewById(R.id.batch_spinner);
         planNameSpinner = findViewById(R.id.plan_spinner);
         addButton = findViewById(R.id.add_button);
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                android.app.DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        dob.setText(day + "/" + month + "/" + year);
+                    }
+                };
+                DatePickerDialogFragment datePickerDialogFragment = new DatePickerDialogFragment(listener);
+                datePickerDialogFragment.show(getSupportFragmentManager(), "Select Date");
+            }
+        });
         getBatch();
         getPlan();
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +105,7 @@ public class AddNewUserActivity extends AppCompatActivity {
                                 }
 
                             }
+
                             @Override
                             public void onFailure(Call<MemberAddResp> call, Throwable t) {
                                 Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_SHORT).show();
@@ -110,8 +126,9 @@ public class AddNewUserActivity extends AppCompatActivity {
     private ArrayList<String> getBatch() {
         ArrayList<Batch> batchList = new ArrayList<>();
         ArrayList<String> baches = new ArrayList<>();
+        String ownerId="1";
         try {
-            Call<List<Batch>> batchCall = ApiAgent.getAPIInstance().getApi().getBatches();
+            Call<List<Batch>> batchCall = ApiAgent.getAPIInstance().getApi().getBatches(ownerId);
             batchCall.enqueue(new Callback<List<Batch>>() {
                 @Override
                 public void onResponse(Call<List<Batch>> call, Response<List<Batch>> response) {
@@ -141,8 +158,9 @@ public class AddNewUserActivity extends AppCompatActivity {
     private ArrayList<String> getPlan() {
         ArrayList<Plan> planList = new ArrayList<>();
         ArrayList<String> plans = new ArrayList<>();
+        String ownerId="1";
         try {
-            Call<List<Plan>> planCall = ApiAgent.getAPIInstance().getApi().getPlans();
+            Call<List<Plan>> planCall = ApiAgent.getAPIInstance().getApi().getPlans(ownerId);
             planCall.enqueue(new Callback<List<Plan>>() {
                 @Override
                 public void onResponse(Call<List<Plan>> call, Response<List<Plan>> response) {

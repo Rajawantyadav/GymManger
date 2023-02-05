@@ -40,9 +40,9 @@ public class PlansActivity extends AppCompatActivity {
         setContentView(R.layout.activity_plans);
         recyclerView = findViewById(R.id.recyclerView);
         addPlanBtn = findViewById(R.id.button_addPlan);
-
+       String ownerId="1";
         try {
-            Call<List<Plan>> planCall = ApiAgent.getAPIInstance().getApi().getPlans();
+            Call<List<Plan>> planCall = ApiAgent.getAPIInstance().getApi().getPlans(ownerId);
             planCall.enqueue(new Callback<List<Plan>>() {
                 @Override
                 public void onResponse(Call<List<Plan>> call, Response<List<Plan>> response) {

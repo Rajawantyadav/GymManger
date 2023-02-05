@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         android:text="Update Plan"
         android:textSize="20dp"
         android:textStyle="bold">
@@ -24,7 +24,7 @@
     <EditText
         android:id="@+id/add_plan_name"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
@@ -35,7 +35,7 @@
     <EditText
         android:id="@+id/add_plan_fees"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
@@ -46,7 +46,7 @@
 
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:gravity="center"
         android:orientation="horizontal">
@@ -70,7 +70,7 @@
     <EditText
         android:id="@+id/add_plan_duration"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
@@ -82,7 +82,7 @@
     <EditText
         android:id="@+id/add_plan_description"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_margin="10dp"
         android:background="@drawable/oval"
         android:gravity="center"
@@ -93,7 +93,7 @@
     <Button
         android:id="@+id/add_plan_btn"
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
         android:background="@drawable/oval"

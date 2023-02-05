@@ -29,9 +29,9 @@ public class MembersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_members);
         recyclerView = findViewById(R.id.members_recyclerview);
-
+       String ownerId="1";
         try {
-            Call<List<Member>> members = ApiAgent.getAPIInstance().getApi().getMembers();
+            Call<List<Member>> members = ApiAgent.getAPIInstance().getApi().getMembers(ownerId);
             members.enqueue(new Callback<List<Member>>() {
                 @Override
                 public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {

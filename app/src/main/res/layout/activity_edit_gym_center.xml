@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddNewUserActivity">
-
+    tools:context=".activity.EditGymCenterActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +31,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/add_name"
+            android:id="@+id/edit_gym_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
@@ -43,7 +42,7 @@
 
 
         <EditText
-            android:id="@+id/add_email"
+            android:id="@+id/edit_gym_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
@@ -55,7 +54,7 @@
 
 
         <EditText
-            android:id="@+id/add_mobile"
+            android:id="@+id/edit_gym_mobile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
@@ -67,76 +66,15 @@
             android:maxLength="10"
             android:maxLines="1"
             android:textSize="17dp"></EditText>
-
-
         <EditText
-            android:id="@+id/add_dob"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/oval"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="14/09/1997"
-            android:drawableRight="@drawable/ic_baseline_calendar_month_24"
-            android:textSize="17dp"></EditText>
-
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <RadioButton
-
-                android:id="@+id/add_radio_male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Male"></RadioButton>
-
-            <RadioButton
-                android:id="@+id/add_radio_female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Female"></RadioButton>
-        </RadioGroup>
-
-
-        <Spinner
-            android:id="@+id/plan_spinner"
+            android:id="@+id/edit_gym_web"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/oval"
             android:gravity="center"
-            android:textAlignment="center"
-            android:textSize="17dp"></Spinner>
-
-
-        <Spinner
-            android:id="@+id/batch_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/oval"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textSize="17dp"></Spinner>
-
-
-        <EditText
-            android:id="@+id/add_weight"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/oval"
-            android:gravity="center"
-            android:hint="60 kg"
-            android:inputType="number"
+            android:hint="www.google.com"
+            android:inputType="textEmailAddress"
             android:textSize="17dp"></EditText>
 
 
@@ -148,7 +86,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/oval"
-            android:text="Add Member"></Button>
+            android:text="Save"></Button>
 
     </LinearLayout>
+
 </ScrollView>

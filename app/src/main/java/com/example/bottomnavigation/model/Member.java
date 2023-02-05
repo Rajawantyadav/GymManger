@@ -7,6 +7,15 @@ public class Member {
     String joiningDate;
     String activePlanName;
     String planExpireDate;
+    String ownerId;
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
 
     public Member(String memberName, String joiningDate, String activePlanName, String planExpireDate) {
         this.memberName = memberName;

@@ -32,8 +32,9 @@ public class AttendanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
         recyclerView = findViewById(R.id.attendance_recyclerview);
+        String ownerId="1";
         try {
-            Call<List<MemberAttendance>> attendanceCall = ApiAgent.getAPIInstance().getApi().getAttendance();
+            Call<List<MemberAttendance>> attendanceCall = ApiAgent.getAPIInstance().getApi().getAttendance(ownerId);
             attendanceCall.enqueue(new Callback<List<MemberAttendance>>() {
                 @Override
                 public void onResponse(Call<List<MemberAttendance>> call, Response<List<MemberAttendance>> response) {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddNewUserActivity">
+    tools:context=".activity.AddNewEnquiryActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,76 +12,53 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="80dp"
-                app:cardElevation="10dp">
-
-                <ImageView
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/members"></ImageView>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:text="New Enquiry Details "
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/add_name"
+            android:id="@+id/enquiry_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/oval"
             android:gravity="center"
-            android:hint="Rajawant Yadav"
+            android:hint="Member Name"
             android:textSize="17dp"></EditText>
 
 
         <EditText
-            android:id="@+id/add_email"
+            android:id="@+id/enquiry_email"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/oval"
             android:gravity="center"
-            android:hint="Rajawant@gmail.com"
+            android:hint="Email Address"
             android:inputType="textEmailAddress"
             android:textSize="17dp"></EditText>
 
 
+
         <EditText
-            android:id="@+id/add_mobile"
+            android:id="@+id/enquiry_mobile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/oval"
             android:ellipsize="end"
             android:gravity="center"
-            android:hint="9984802878"
+            android:hint="Mobile Numbetr"
             android:inputType="number"
             android:maxLength="10"
             android:maxLines="1"
             android:textSize="17dp"></EditText>
-
-
-        <EditText
-            android:id="@+id/add_dob"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/oval"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="14/09/1997"
-            android:drawableRight="@drawable/ic_baseline_calendar_month_24"
-            android:textSize="17dp"></EditText>
-
-
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -91,64 +68,54 @@
 
             <RadioButton
 
-                android:id="@+id/add_radio_male"
+                android:id="@+id/enquiry_add_radio_male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Male"></RadioButton>
 
             <RadioButton
-                android:id="@+id/add_radio_female"
+                android:id="@+id/enquiry_add_radio_female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Female"></RadioButton>
         </RadioGroup>
 
-
-        <Spinner
-            android:id="@+id/plan_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/oval"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textSize="17dp"></Spinner>
-
-
-        <Spinner
-            android:id="@+id/batch_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/oval"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textSize="17dp"></Spinner>
-
-
         <EditText
-            android:id="@+id/add_weight"
+            android:id="@+id/enquiry_date"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_margin="10dp"
             android:background="@drawable/oval"
+            android:ems="10"
             android:gravity="center"
-            android:hint="60 kg"
-            android:inputType="number"
+            android:hint="Enquiry Date"
+            android:drawableRight="@drawable/ic_baseline_calendar_month_24"
+            android:textSize="17dp"></EditText>
+        <EditText
+            android:id="@+id/enquiry_desc"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/oval"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Description"
             android:textSize="17dp"></EditText>
 
 
+
         <Button
-            android:id="@+id/add_button"
+            android:id="@+id/enquiry_add_button"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/oval"
-            android:text="Add Member"></Button>
+            android:text="Save"></Button>
 
     </LinearLayout>
-</ScrollView>
+
+</LinearLayout>

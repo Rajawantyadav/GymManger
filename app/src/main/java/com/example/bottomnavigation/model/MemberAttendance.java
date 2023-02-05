@@ -6,6 +6,15 @@ public class MemberAttendance {
     String punchDate;
     String punchInTime;
     String punchOutTime;
+    String ownerId;
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
 
     public MemberAttendance(String memberName, String punchDate, String punchInTime, String punchOutTime) {
         this.memberName = memberName;

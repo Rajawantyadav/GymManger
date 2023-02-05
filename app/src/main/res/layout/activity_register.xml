@@ -40,6 +40,22 @@
         android:hint="Rajawant123@gmail.com"
         android:textAlignment="center"
         android:textSize="20dp" />
+    <EditText
+        android:id="@+id/regis_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/oval"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:hint="9984802878"
+        android:inputType="number"
+        android:maxLength="10"
+        android:maxLines="1"
+        android:textSize="17dp"></EditText>
+
 
     <EditText
         android:id="@+id/regis_psw"

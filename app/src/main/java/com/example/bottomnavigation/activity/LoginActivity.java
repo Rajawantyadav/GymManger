@@ -12,6 +12,15 @@ import android.widget.Toast;
 
 import com.example.bottomnavigation.MainActivity;
 import com.example.bottomnavigation.R;
+import com.example.bottomnavigation.network.ApiAgent;
+import com.example.bottomnavigation.request.LoginReq;
+import com.example.bottomnavigation.response.MemberAddResp;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     Button btn_login, btn_register, btn_forgot_psw;
@@ -42,8 +51,33 @@ public class LoginActivity extends AppCompatActivity {
                     login_psw.setFocusableInTouchMode(true);
                     login_psw.requestFocus();
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                    LoginReq req = new LoginReq();
+                    req.setUserEmailId(email);
+                    req.setPassword(password);
+                    try {
+                        Call<MemberAddResp> loginCall = ApiAgent.getAPIInstance().getApi().loginGymOwner(req);
+                        loginCall.enqueue(new Callback<MemberAddResp>() {
+                            @Override
+                            public void onResponse(Call<MemberAddResp> call, Response<MemberAddResp> response) {
+                                if ( response!=null && response.isSuccessful() && response.body().getError().equalsIgnoreCase("false")) {
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Incorrect email or password.", Toast.LENGTH_LONG).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<MemberAddResp> call, Throwable t) {
+                                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+
                 }
 
             }

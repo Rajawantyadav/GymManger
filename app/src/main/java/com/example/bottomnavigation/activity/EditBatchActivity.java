@@ -1,20 +1,22 @@
 package com.example.bottomnavigation.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.bottomnavigation.R;
-import com.example.bottomnavigation.activity.BatchActivity;
 import com.example.bottomnavigation.model.Batch;
 import com.example.bottomnavigation.network.ApiAgent;
 import com.example.bottomnavigation.response.MemberAddResp;
+import com.example.bottomnavigation.utility.TimePickerDialogFragment;
 
 import java.io.IOException;
 
@@ -47,6 +49,32 @@ public class EditBatchActivity extends AppCompatActivity {
         batchLimit.setText(batch_limit);
         batchStartTime.setText(batch_start_time);
         batchEndTime.setText(batch_end_time);
+        batchStartTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        batchStartTime.setText(i + ":" + i1);
+                    }
+                };
+                TimePickerDialogFragment fragment = new TimePickerDialogFragment(listener);
+                fragment.show(getSupportFragmentManager(), "Select Time");
+            }
+        });
+        batchEndTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        batchEndTime.setText(i + ":" + i1);
+                    }
+                };
+                TimePickerDialogFragment fragment = new TimePickerDialogFragment(listener);
+                fragment.show(getSupportFragmentManager(), "Select Time");
+            }
+        });
 
         btnUpdateBatch.setOnClickListener(new View.OnClickListener() {
             @Override
