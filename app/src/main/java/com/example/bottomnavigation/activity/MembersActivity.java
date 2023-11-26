@@ -32,8 +32,8 @@ public class MembersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_members);
         recyclerView = findViewById(R.id.members_recyclerview);
-        Intent intent=getIntent();
-        ownerId=intent.getStringExtra("ownerId");
+        Intent intent = getIntent();
+        ownerId = intent.getStringExtra("ownerId");
 
 
         try {
@@ -41,7 +41,8 @@ public class MembersActivity extends AppCompatActivity {
             members.enqueue(new Callback<MemberResp>() {
                 @Override
                 public void onResponse(Call<MemberResp> call, Response<MemberResp> response) {
-                    dataList.addAll(response.body().getMemebers());
+                    if (response != null && response.body() != null && response.body().getMemebers() != null)
+                        dataList.addAll(response.body().getMemebers());
                     MemberListAdapter adapter = new MemberListAdapter(getApplicationContext(), dataList);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(

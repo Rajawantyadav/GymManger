@@ -13,6 +13,7 @@ import com.example.bottomnavigation.R;
 import com.example.bottomnavigation.adapters.MemberAttendanceAdapter;
 import com.example.bottomnavigation.model.MemberAttendance;
 import com.example.bottomnavigation.network.ApiAgent;
+import com.example.bottomnavigation.response.MemberAttendanceResp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,22 +27,24 @@ public class AttendanceActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<MemberAttendance> dataList = new ArrayList<>();
-   String ownerId;
+    String ownerId;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
         recyclerView = findViewById(R.id.attendance_recyclerview);
-        Intent intent=getIntent();
-        ownerId=intent.getStringExtra("ownerId");
+        Intent intent = getIntent();
+        ownerId = intent.getStringExtra("ownerId");
 
         try {
-            Call<List<MemberAttendance>> attendanceCall = ApiAgent.getAPIInstance().getApi().getAttendance(ownerId);
-            attendanceCall.enqueue(new Callback<List<MemberAttendance>>() {
+            Call<MemberAttendanceResp> attendanceCall = ApiAgent.getAPIInstance().getApi().getAttendance(ownerId);
+            attendanceCall.enqueue(new Callback<MemberAttendanceResp>() {
                 @Override
-                public void onResponse(Call<List<MemberAttendance>> call, Response<List<MemberAttendance>> response) {
-                    dataList.addAll(response.body());
+                public void onResponse(Call<MemberAttendanceResp> call, Response<MemberAttendanceResp> response) {
+                    if(response!=null && response.body()!=null && response.body().getMemberAttendances()!=null)
+                    dataList.addAll(response.body().getMemberAttendances());
                     MemberAttendanceAdapter adapter = new MemberAttendanceAdapter(getApplicationContext(), dataList);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(
@@ -49,7 +52,7 @@ public class AttendanceActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<MemberAttendance>> call, Throwable t) {
+                public void onFailure(Call<MemberAttendanceResp> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_SHORT);
                 }
             });

@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                                 if (response != null && response.isSuccessful() && response.body().getError().equalsIgnoreCase("false")) {
                                     String ownerId = response.body().getOwnerId();
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     intent.putExtra("ownerId", ownerId);
                                     startActivity(intent);
                                 } else {

@@ -49,7 +49,8 @@ public class PlansActivity extends AppCompatActivity {
             planCall.enqueue(new Callback<PlanResp>() {
                 @Override
                 public void onResponse(Call<PlanResp> call, Response<PlanResp> response) {
-                    dataList.addAll(response.body().getPlans());
+                    if (response != null && response.body() != null && response.body().getPlans() != null)
+                        dataList.addAll(response.body().getPlans());
                     listener = new SelectListener() {
                         @Override
                         public void onItemClickListener(Object object) {
@@ -89,7 +90,7 @@ public class PlansActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(getApplicationContext(), AddNewPlanActivity.class);
-                myIntent.putExtra("ownerId",ownerId);
+                myIntent.putExtra("ownerId", ownerId);
                 startActivity(myIntent);
             }
         });

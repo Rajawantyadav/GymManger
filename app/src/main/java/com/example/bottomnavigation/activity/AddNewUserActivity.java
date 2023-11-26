@@ -141,7 +141,8 @@ public class AddNewUserActivity extends AppCompatActivity {
             batchCall.enqueue(new Callback<BatchResp>() {
                 @Override
                 public void onResponse(Call<BatchResp> call, Response<BatchResp> response) {
-                    batchList.addAll(response.body().getBatches());
+                    if (response != null && response.body() != null && response.body().getBatches() != null)
+                        batchList.addAll(response.body().getBatches());
                     for (Batch batch : batchList) {
                         baches.add(batch.getBatchName());
                     }
@@ -172,7 +173,8 @@ public class AddNewUserActivity extends AppCompatActivity {
             planCall.enqueue(new Callback<PlanResp>() {
                 @Override
                 public void onResponse(Call<PlanResp> call, Response<PlanResp> response) {
-                    planList.addAll(response.body().getPlans());
+                    if (response != null && response.body() != null && response.body().getPlans() != null)
+                        planList.addAll(response.body().getPlans());
                     for (Plan plan : planList) {
                         plans.add(plan.getPlanName());
                     }

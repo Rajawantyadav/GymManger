@@ -13,6 +13,7 @@ import com.example.bottomnavigation.request.MemberDetails;
 import com.example.bottomnavigation.response.BatchResp;
 import com.example.bottomnavigation.response.EnquiryResp;
 import com.example.bottomnavigation.response.MemberAddResp;
+import com.example.bottomnavigation.response.MemberAttendanceResp;
 import com.example.bottomnavigation.response.MemberResp;
 import com.example.bottomnavigation.response.PlanResp;
 
@@ -36,7 +37,7 @@ public interface ApiInterface {
     Call<MemberAddResp> addPlan(@Body Plan planDetails);
 
     @GET(APIs.GET_OWNER_ATTENDANCE_URL)
-    Call<List<MemberAttendance>> getAttendance(@Path("ownerId") String ownerId);
+    Call<MemberAttendanceResp> getAttendance(@Path("ownerId") String ownerId);
 
     @GET(APIs.GET_MEMBERS_URL)
     Call<MemberResp> getMembers(@Path("ownerId") String ownerId);
