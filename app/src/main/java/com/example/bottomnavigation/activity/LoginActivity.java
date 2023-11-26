@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.bottomnavigation.MainActivity;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btn_login, btn_register, btn_forgot_psw;
     EditText login_email, login_psw;
 
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         btn_forgot_psw = findViewById(R.id.btn_forgot_psw);
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String email = login_email.getText().toString();
                 String password = login_psw.getText().toString();
                 if (email.length() < 1) {
@@ -59,8 +61,10 @@ public class LoginActivity extends AppCompatActivity {
                         loginCall.enqueue(new Callback<MemberAddResp>() {
                             @Override
                             public void onResponse(Call<MemberAddResp> call, Response<MemberAddResp> response) {
-                                if ( response!=null && response.isSuccessful() && response.body().getError().equalsIgnoreCase("false")) {
+                                if (response != null && response.isSuccessful() && response.body().getError().equalsIgnoreCase("false")) {
+                                    String ownerId = response.body().getOwnerId();
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    intent.putExtra("ownerId", ownerId);
                                     startActivity(intent);
                                 } else {
                                     Toast.makeText(getApplicationContext(), "Incorrect email or password.", Toast.LENGTH_LONG).show();
@@ -69,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<MemberAddResp> call, Throwable t) {
+
                                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_LONG).show();
 
                             }

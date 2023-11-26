@@ -41,6 +41,8 @@ public class AddNewPlanActivity extends AppCompatActivity {
         radioMonths = findViewById(R.id.plan_radio_months);
         radioDays = findViewById(R.id.plan_radio_days);
         btnAddPlan = findViewById(R.id.add_plan_btn);
+        Intent intent = getIntent();
+       String ownerId = intent.getStringExtra("ownerId");
 
         btnAddPlan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +63,7 @@ public class AddNewPlanActivity extends AppCompatActivity {
                     plan.setPlanDescription(planDesc.getText().toString());
                     plan.setPlanDuration(durationInDays);
                     plan.setPlanAcive("1");
+                    plan.setOwnerId(ownerId);
                     try {
                         Call<MemberAddResp> addPlanCall = ApiAgent.getAPIInstance().getApi().addPlan(plan);
                         addPlanCall.enqueue(new Callback<MemberAddResp>() {
@@ -68,6 +71,7 @@ public class AddNewPlanActivity extends AppCompatActivity {
                             public void onResponse(Call<MemberAddResp> call, Response<MemberAddResp> response) {
                                 Toast.makeText(getApplicationContext(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), PlansActivity.class);
+                                intent.putExtra("ownerId",ownerId);
                                 startActivity(intent);
                             }
 

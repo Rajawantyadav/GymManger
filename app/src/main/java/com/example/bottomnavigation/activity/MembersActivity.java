@@ -1,5 +1,6 @@
 package com.example.bottomnavigation.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -11,6 +12,7 @@ import com.example.bottomnavigation.R;
 import com.example.bottomnavigation.adapters.MemberListAdapter;
 import com.example.bottomnavigation.model.Member;
 import com.example.bottomnavigation.network.ApiAgent;
+import com.example.bottomnavigation.response.MemberResp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,19 +25,23 @@ import retrofit2.Response;
 public class MembersActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Member> dataList = new ArrayList<>();
+    String ownerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_members);
         recyclerView = findViewById(R.id.members_recyclerview);
-       String ownerId="1";
+        Intent intent=getIntent();
+        ownerId=intent.getStringExtra("ownerId");
+
+
         try {
-            Call<List<Member>> members = ApiAgent.getAPIInstance().getApi().getMembers(ownerId);
-            members.enqueue(new Callback<List<Member>>() {
+            Call<MemberResp> members = ApiAgent.getAPIInstance().getApi().getMembers(ownerId);
+            members.enqueue(new Callback<MemberResp>() {
                 @Override
-                public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
-                    dataList.addAll(response.body());
+                public void onResponse(Call<MemberResp> call, Response<MemberResp> response) {
+                    dataList.addAll(response.body().getMemebers());
                     MemberListAdapter adapter = new MemberListAdapter(getApplicationContext(), dataList);
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(
@@ -43,7 +49,7 @@ public class MembersActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<Member>> call, Throwable t) {
+                public void onFailure(Call<MemberResp> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Something went wrong ???.", Toast.LENGTH_SHORT).show();
                 }
             });

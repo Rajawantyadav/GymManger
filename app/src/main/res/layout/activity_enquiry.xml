@@ -21,8 +21,10 @@
         android:layout_height="70dp"
         android:layout_marginEnd="44dp"
         android:layout_marginBottom="48dp"
-        android:background="@drawable/ring_shape"
-        android:text="New"
+        android:background="@drawable/oval"
+        android:text="+"
+        android:textSize="30dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"></Button>
 

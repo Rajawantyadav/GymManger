@@ -79,7 +79,7 @@
 
 
         <Button
-            android:id="@+id/add_button"
+            android:id="@+id/save_gym_button"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center"

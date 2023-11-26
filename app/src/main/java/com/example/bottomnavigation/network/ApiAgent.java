@@ -6,12 +6,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiAgent {
-
-    //private static final String BASE_URL = "https://api.publicapis.org/";
-    //private static final String BASE_URL = "http://10.0.2.2:8080/api/";
-    //private static final String BASE_URL = "http://192.168.114.100:8080/api/";
-    //private static final String BASE_URL = "http://192.168.43.115:8080/api/";
-    private static final String BASE_URL = "http://192.168.95.103:8080/api/";
+    private static final String BASE_URL = "http://192.168.205.103:8083/api/";
     private static ApiAgent apiAgent;
     private static Retrofit retrofit;
 

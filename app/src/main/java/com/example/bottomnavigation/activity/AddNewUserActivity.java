@@ -19,7 +19,9 @@ import com.example.bottomnavigation.model.Batch;
 import com.example.bottomnavigation.model.Plan;
 import com.example.bottomnavigation.network.ApiAgent;
 import com.example.bottomnavigation.request.MemberDetails;
+import com.example.bottomnavigation.response.BatchResp;
 import com.example.bottomnavigation.response.MemberAddResp;
+import com.example.bottomnavigation.response.PlanResp;
 import com.example.bottomnavigation.utility.DatePickerDialogFragment;
 
 import java.io.IOException;
@@ -36,6 +38,7 @@ public class AddNewUserActivity extends AppCompatActivity {
     Spinner batchNameSpinner, planNameSpinner;
     Button addButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,12 @@ public class AddNewUserActivity extends AppCompatActivity {
         batchNameSpinner = findViewById(R.id.batch_spinner);
         planNameSpinner = findViewById(R.id.plan_spinner);
         addButton = findViewById(R.id.add_button);
+        Intent intent = getIntent();
+        String ownerId = intent.getStringExtra("ownerId");
+        getBatch(ownerId);
+        getPlan(ownerId);
         dob.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 android.app.DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
@@ -63,8 +71,7 @@ public class AddNewUserActivity extends AppCompatActivity {
                 datePickerDialogFragment.show(getSupportFragmentManager(), "Select Date");
             }
         });
-        getBatch();
-        getPlan();
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +100,7 @@ public class AddNewUserActivity extends AppCompatActivity {
                         memberDetails.setMemberPlan(planNameSpinner.getSelectedItem().toString());
                         memberDetails.setMemberBatch(batchNameSpinner.getSelectedItem().toString());
                         memberDetails.setMemberGender(gender);
+                        memberDetails.setOwnerId(ownerId);
                         Call<MemberAddResp> respCall = ApiAgent.getAPIInstance().getApi().addMember(memberDetails);
                         respCall.enqueue(new Callback<MemberAddResp>() {
                             @Override
@@ -101,6 +109,7 @@ public class AddNewUserActivity extends AppCompatActivity {
                                 if (response.isSuccessful() && response.body().getError().equalsIgnoreCase("false")) {
                                     Toast.makeText(getApplicationContext(), response.body().getMsg() + "", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(AddNewUserActivity.this, MembersActivity.class);
+                                    intent.putExtra("ownerId", ownerId);
                                     startActivity(intent);
                                 }
 
@@ -123,48 +132,47 @@ public class AddNewUserActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<String> getBatch() {
+    private void getBatch(String ownerId) {
         ArrayList<Batch> batchList = new ArrayList<>();
         ArrayList<String> baches = new ArrayList<>();
-        String ownerId="1";
+
         try {
-            Call<List<Batch>> batchCall = ApiAgent.getAPIInstance().getApi().getBatches(ownerId);
-            batchCall.enqueue(new Callback<List<Batch>>() {
+            Call<BatchResp> batchCall = ApiAgent.getAPIInstance().getApi().getBatches(ownerId);
+            batchCall.enqueue(new Callback<BatchResp>() {
                 @Override
-                public void onResponse(Call<List<Batch>> call, Response<List<Batch>> response) {
-                    batchList.addAll(response.body());
+                public void onResponse(Call<BatchResp> call, Response<BatchResp> response) {
+                    batchList.addAll(response.body().getBatches());
                     for (Batch batch : batchList) {
                         baches.add(batch.getBatchName());
                     }
                     ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(AddNewUserActivity.this, android.R.layout.simple_spinner_item, baches);
                     spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                     batchNameSpinner.setAdapter(spinnerArrayAdapter);
-                    batchNameSpinner.setSelection(1);
                 }
 
                 @Override
-                public void onFailure(Call<List<Batch>> call, Throwable t) {
+                public void onFailure(Call<BatchResp> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Something went wrong  ", Toast.LENGTH_LONG).show();
 
                 }
             });
 
 
         } catch (Exception e) {
-
+            e.getStackTrace();
         }
-        return baches;
+
     }
 
-    private ArrayList<String> getPlan() {
+    private void getPlan(String ownerId) {
         ArrayList<Plan> planList = new ArrayList<>();
         ArrayList<String> plans = new ArrayList<>();
-        String ownerId="1";
         try {
-            Call<List<Plan>> planCall = ApiAgent.getAPIInstance().getApi().getPlans(ownerId);
-            planCall.enqueue(new Callback<List<Plan>>() {
+            Call<PlanResp> planCall = ApiAgent.getAPIInstance().getApi().getPlans(ownerId);
+            planCall.enqueue(new Callback<PlanResp>() {
                 @Override
-                public void onResponse(Call<List<Plan>> call, Response<List<Plan>> response) {
-                    planList.addAll(response.body());
+                public void onResponse(Call<PlanResp> call, Response<PlanResp> response) {
+                    planList.addAll(response.body().getPlans());
                     for (Plan plan : planList) {
                         plans.add(plan.getPlanName());
                     }
@@ -172,18 +180,17 @@ public class AddNewUserActivity extends AppCompatActivity {
                     ArrayAdapter<String> spinnerArrayAdapter1 = new ArrayAdapter<String>(AddNewUserActivity.this, android.R.layout.simple_spinner_item, plans);
                     spinnerArrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
                     planNameSpinner.setAdapter(spinnerArrayAdapter1);
-                    planNameSpinner.setSelection(1);
                 }
 
                 @Override
-                public void onFailure(Call<List<Plan>> call, Throwable t) {
+                public void onFailure(Call<PlanResp> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Something went wrong  ", Toast.LENGTH_LONG).show();
 
                 }
             });
 
         } catch (Exception e) {
-
+            e.getStackTrace();
         }
-        return plans;
     }
 }

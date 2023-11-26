@@ -38,7 +38,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/oval"
             android:gravity="center"
-            android:hint="Rajawant Yadav"
+            android:hint="Member name"
             android:textSize="17dp"></EditText>
 
 
@@ -49,7 +49,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/oval"
             android:gravity="center"
-            android:hint="Rajawant@gmail.com"
+            android:hint="Email address"
             android:inputType="textEmailAddress"
             android:textSize="17dp"></EditText>
 
@@ -62,7 +62,7 @@
             android:background="@drawable/oval"
             android:ellipsize="end"
             android:gravity="center"
-            android:hint="9984802878"
+            android:hint="Mobile"
             android:inputType="number"
             android:maxLength="10"
             android:maxLines="1"
@@ -77,7 +77,7 @@
             android:background="@drawable/oval"
             android:ems="10"
             android:gravity="center"
-            android:hint="14/09/1997"
+            android:hint="Date of Birth"
             android:drawableRight="@drawable/ic_baseline_calendar_month_24"
             android:textSize="17dp"></EditText>
 
@@ -135,7 +135,7 @@
             android:layout_margin="10dp"
             android:background="@drawable/oval"
             android:gravity="center"
-            android:hint="60 kg"
+            android:hint="weight"
             android:inputType="number"
             android:textSize="17dp"></EditText>
 

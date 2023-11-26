@@ -37,6 +37,8 @@ public class AddNewExpenseActivity extends AppCompatActivity {
         expense_amount = findViewById(R.id.expense_amount);
         expense_date = findViewById(R.id.expense_date);
         expense_add_button = findViewById(R.id.expense_add_button);
+        Intent intent = getIntent();
+        String ownerId = intent.getStringExtra("ownerId");
 
         expense_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +61,7 @@ public class AddNewExpenseActivity extends AppCompatActivity {
                 gymExpense.setExpense_amount(expense_amount.getText().toString());
                 gymExpense.setExpense_date(expense_date.getText().toString());
                 gymExpense.setExpense_title(expense_title.getText().toString());
+                gymExpense.setOwnerId(ownerId);
                 try {
                     Call<MemberAddResp> gymExpenseCall = ApiAgent.getAPIInstance().getApi().addExpense(gymExpense);
                     gymExpenseCall.enqueue(new Callback<MemberAddResp>() {

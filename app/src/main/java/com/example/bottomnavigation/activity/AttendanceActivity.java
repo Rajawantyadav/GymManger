@@ -1,6 +1,7 @@
 package com.example.bottomnavigation.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -25,14 +26,16 @@ public class AttendanceActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     List<MemberAttendance> dataList = new ArrayList<>();
-
+   String ownerId;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
         recyclerView = findViewById(R.id.attendance_recyclerview);
-        String ownerId="1";
+        Intent intent=getIntent();
+        ownerId=intent.getStringExtra("ownerId");
+
         try {
             Call<List<MemberAttendance>> attendanceCall = ApiAgent.getAPIInstance().getApi().getAttendance(ownerId);
             attendanceCall.enqueue(new Callback<List<MemberAttendance>>() {

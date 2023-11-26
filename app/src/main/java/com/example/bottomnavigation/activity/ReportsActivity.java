@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,7 +21,7 @@ import java.util.List;
 public class ReportsActivity extends AppCompatActivity {
     Spinner report_spinner;
     EditText from_date, to_date;
-
+    String ownerId;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,8 @@ public class ReportsActivity extends AppCompatActivity {
         report_spinner = findViewById(R.id.report_spinner);
         from_date = findViewById(R.id.from_date);
         to_date = findViewById(R.id.to_date);
-
+        Intent intent=getIntent();
+        ownerId=intent.getStringExtra("ownerId");
         from_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

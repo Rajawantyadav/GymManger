@@ -16,6 +16,7 @@ import com.example.bottomnavigation.adapters.BatchAdapter;
 import com.example.bottomnavigation.listener.SelectListener;
 import com.example.bottomnavigation.model.Batch;
 import com.example.bottomnavigation.network.ApiAgent;
+import com.example.bottomnavigation.response.BatchResp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,14 +39,16 @@ public class BatchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_batch);
         recyclerView = findViewById(R.id.recyclerView2);
         addBatchButton = findViewById(R.id.add_batch_button);
-        String ownerId = "1";
+        Intent intent = getIntent();
+        String ownerId = intent.getStringExtra("ownerId");
 
         try {
-            Call<List<Batch>> batchCall = ApiAgent.getAPIInstance().getApi().getBatches(ownerId);
-            batchCall.enqueue(new Callback<List<Batch>>() {
+            Call<BatchResp> batchCall = ApiAgent.getAPIInstance().getApi().getBatches(ownerId);
+            batchCall.enqueue(new Callback<BatchResp>() {
                 @Override
-                public void onResponse(Call<List<Batch>> call, Response<List<Batch>> response) {
-                    dataList.addAll(response.body());
+                public void onResponse(Call<BatchResp> call, Response<BatchResp> response) {
+                    if (response.body()!=null &&response.body().getBatches() != null)
+                        dataList.addAll(response.body().getBatches());
                     listener = new SelectListener() {
                         @Override
                         public void onItemClickListener(Object object) {
@@ -66,7 +69,7 @@ public class BatchActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<Batch>> call, Throwable t) {
+                public void onFailure(Call<BatchResp> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_SHORT);
                 }
             });
@@ -78,6 +81,7 @@ public class BatchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(getApplicationContext(), AddNewBatchActivity.class);
+                myIntent.putExtra("ownerId", ownerId);
                 startActivity(myIntent);
             }
         });

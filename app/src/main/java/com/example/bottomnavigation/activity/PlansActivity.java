@@ -16,6 +16,7 @@ import com.example.bottomnavigation.adapters.PlanAdapter;
 import com.example.bottomnavigation.listener.SelectListener;
 import com.example.bottomnavigation.model.Plan;
 import com.example.bottomnavigation.network.ApiAgent;
+import com.example.bottomnavigation.response.PlanResp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class PlansActivity extends AppCompatActivity {
 
     List<Plan> dataList = new ArrayList<>();
     SelectListener listener;
-
+    String ownerId;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,13 +41,15 @@ public class PlansActivity extends AppCompatActivity {
         setContentView(R.layout.activity_plans);
         recyclerView = findViewById(R.id.recyclerView);
         addPlanBtn = findViewById(R.id.button_addPlan);
-       String ownerId="1";
+        Intent intent = getIntent();
+        ownerId = intent.getStringExtra("ownerId");
+
         try {
-            Call<List<Plan>> planCall = ApiAgent.getAPIInstance().getApi().getPlans(ownerId);
-            planCall.enqueue(new Callback<List<Plan>>() {
+            Call<PlanResp> planCall = ApiAgent.getAPIInstance().getApi().getPlans(ownerId);
+            planCall.enqueue(new Callback<PlanResp>() {
                 @Override
-                public void onResponse(Call<List<Plan>> call, Response<List<Plan>> response) {
-                    dataList.addAll(response.body());
+                public void onResponse(Call<PlanResp> call, Response<PlanResp> response) {
+                    dataList.addAll(response.body().getPlans());
                     listener = new SelectListener() {
                         @Override
                         public void onItemClickListener(Object object) {
@@ -69,7 +72,7 @@ public class PlansActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<List<Plan>> call, Throwable t) {
+                public void onFailure(Call<PlanResp> call, Throwable t) {
                     Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_SHORT);
 
                 }
@@ -86,6 +89,7 @@ public class PlansActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(getApplicationContext(), AddNewPlanActivity.class);
+                myIntent.putExtra("ownerId",ownerId);
                 startActivity(myIntent);
             }
         });

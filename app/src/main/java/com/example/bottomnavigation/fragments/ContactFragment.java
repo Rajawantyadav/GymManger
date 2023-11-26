@@ -36,6 +36,8 @@ public class ContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Bundle bundle = this.getArguments();
+        String ownerId = bundle.getString("ownerId");
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
         gridView = view.findViewById(R.id.gridView);
         ContactGridViewAdapter adapter = new ContactGridViewAdapter(getContext(), names, icons);
@@ -60,6 +62,7 @@ public class ContactFragment extends Fragment {
                     startActivity(Intent.createChooser(email, "Choose an Email client :"));
                 } else if (names[i].equalsIgnoreCase("Gym Profile")) {
                     Intent intent = new Intent(getContext(), EditGymCenterActivity.class);
+                    intent.putExtra("ownerId",ownerId);
                     startActivity(intent);
                 } else if (names[i].equalsIgnoreCase("Contact us")) {
                     try {
@@ -84,6 +87,7 @@ public class ContactFragment extends Fragment {
                     builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
                         // When the user click yes button then app will do action
                         Intent intent = new Intent(getContext(), LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         Toast.makeText(getContext(), "You have logged out..", Toast.LENGTH_LONG).show();
                     });

@@ -39,6 +39,8 @@ public class AddNewBatchActivity extends AppCompatActivity {
         batchStartTime = findViewById(R.id.batch_start_time);
         batchEndTime = findViewById(R.id.batch_end_time);
         btnAddBatch = findViewById(R.id.button_addBatch);
+        Intent intent = getIntent();
+        String ownerId = intent.getStringExtra("ownerId");
         batchStartTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,6 +81,7 @@ public class AddNewBatchActivity extends AppCompatActivity {
                     batch.setBatchEndTime(batchEndTime.getText().toString());
                     batch.setLimit(batchLimit.getText().toString());
                     batch.setBatchActive("1");
+                    batch.setOwnerId(ownerId);
                     try {
                         Call<MemberAddResp> addBatchCall = ApiAgent.getAPIInstance().getApi().addBatch(batch);
                         addBatchCall.enqueue(new Callback<MemberAddResp>() {
@@ -86,6 +89,7 @@ public class AddNewBatchActivity extends AppCompatActivity {
                             public void onResponse(Call<MemberAddResp> call, Response<MemberAddResp> response) {
                                 Toast.makeText(getApplicationContext(), response.body().getMsg(), Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), BatchActivity.class);
+                                intent.putExtra("ownerId",ownerId);
                                 startActivity(intent);
                             }
 

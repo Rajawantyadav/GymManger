@@ -36,6 +36,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        Bundle bundle = this.getArguments();
+        String ownerId = bundle.getString("ownerId");
         // Inflate the layout for this fragment
         gridView = view.findViewById(R.id.gridView);
         GridViewAdapter adapter = new GridViewAdapter(getContext(), dashBoardNames, dashBoardIcons);
@@ -46,27 +48,35 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (dashBoardNames[i].equalsIgnoreCase("Add")) {
                     Intent myIntent = new Intent(getContext(), AddNewUserActivity.class);
+                    myIntent.putExtra("ownerId",ownerId);
                     startActivity(myIntent);
                 } else if (dashBoardNames[i].equalsIgnoreCase("Plans")) {
                     Intent myIntent = new Intent(getContext(), PlansActivity.class);
+                    myIntent.putExtra("ownerId",ownerId);
                     startActivity(myIntent);
                 } else if (dashBoardNames[i].equalsIgnoreCase("Attendance")) {
                     Intent myIntent = new Intent(getContext(), AttendanceActivity.class);
+                    myIntent.putExtra("ownerId",ownerId);
                     startActivity(myIntent);
                 } else if (dashBoardNames[i].equalsIgnoreCase("Batch")) {
                     Intent myIntent = new Intent(getContext(), BatchActivity.class);
+                    myIntent.putExtra("ownerId",ownerId);
                     startActivity(myIntent);
                 } else if (dashBoardNames[i].equalsIgnoreCase("Members")) {
                     Intent myIntent = new Intent(getContext(), MembersActivity.class);
+                    myIntent.putExtra("ownerId",ownerId);
                     startActivity(myIntent);
                 } else if (dashBoardNames[i].equalsIgnoreCase("Report")) {
                     Intent myIntent = new Intent(getContext(), ReportsActivity.class);
+                    myIntent.putExtra("ownerId",ownerId);
                     startActivity(myIntent);
                 } else if (dashBoardNames[i].equalsIgnoreCase("Enquiry")) {
                     Intent myIntent = new Intent(getContext(), EnquiryActivity.class);
+                    myIntent.putExtra("ownerId",ownerId);
                     startActivity(myIntent);
                 } else if (dashBoardNames[i].equalsIgnoreCase("Expense")) {
                     Intent myIntent = new Intent(getContext(), ExpenseActivity.class);
+                    myIntent.putExtra("ownerId",ownerId);
                     startActivity(myIntent);
                 } else {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=4DkNCgUXbig&list=RDS980-z1qx3g&index=27&ab_channel=NAVRecords")));

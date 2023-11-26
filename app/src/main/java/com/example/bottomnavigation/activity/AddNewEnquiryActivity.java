@@ -42,6 +42,8 @@ public class AddNewEnquiryActivity extends AppCompatActivity {
         enquiry_add_radio_male = findViewById(R.id.enquiry_add_radio_male);
         enquiry_add_radio_female = findViewById(R.id.enquiry_add_radio_female);
         enquiry_add_button = findViewById(R.id.enquiry_add_button);
+        Intent intent = getIntent();
+        String ownerId = intent.getStringExtra("ownerId");
         enquiry_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,6 +68,7 @@ public class AddNewEnquiryActivity extends AppCompatActivity {
                 enquiryMember.setMember_email(enquiry_email.getText().toString());
                 enquiryMember.setMember_mobile(enquiry_mobile.getText().toString());
                 enquiryMember.setMember_name(enquiry_name.getText().toString());
+                enquiryMember.setOwnerId(ownerId);
                 enquiryMember.setMember_gender(gender);
                 try {
                     Call<MemberAddResp> enquiryMemberCall = ApiAgent.getAPIInstance().getApi().addEnquiryMember(enquiryMember);

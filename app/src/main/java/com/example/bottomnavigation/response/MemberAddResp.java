@@ -3,6 +3,15 @@ package com.example.bottomnavigation.response;
 public class MemberAddResp {
     String error;
     String msg;
+    String ownerId;
+
+    public String getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(String ownerId) {
+        this.ownerId = ownerId;
+    }
 
     public MemberAddResp() {
     }
